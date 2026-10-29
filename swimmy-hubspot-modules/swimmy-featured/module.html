@@ -1,6 +1,42 @@
 
 {% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
 
+{# --- pick the featured post dynamically --- #}
+{% set posts = blog_recent_posts('default', 100) %}
+{% set ordered = posts if module.newest_first else posts|reverse %}
+{% set found = [] %}
+{% if module.featured_story %}
+  {% for p in ordered %}
+    {% if p.id|string == module.featured_story|string %}{% do found.append(p) %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% set featured = found|first if found else posts|first %}
+
+{% if featured %}
+  {# story number (same ordering as the Stories list) #}
+  {% set pos = [] %}
+  {% for p in ordered %}
+    {% if p.id == featured.id %}{% do pos.append(loop.index) %}{% endif %}
+  {% endfor %}
+  {% set num = pos|first %}
+
+  {# category tag = tag with no Japanese characters #}
+  {% set cats = [] %}
+  {% for t in featured.tag_list %}
+    {% if (t.name|regex_replace('[ -~]', ''))|length == 0 %}{% do cats.append(t) %}{% endif %}
+  {% endfor %}
+  {% set tag = cats|first %}
+
+  {% set summary = featured.meta_description %}
+  {% if not summary %}{% set summary = featured.post_list_content|striptags|truncate(80) %}{% endif %}
+
+  {# Image: custom module field overrides dynamic blog featured_image #}
+  {% set img_src = module.image.src|default(module.custom_image.src|default(featured.featured_image)) %}
+  {% set img_alt = module.image.alt|default(module.custom_image.alt|default(featured.featured_image_alt_text|default(featured.name))) %}
+
+  {# Content: custom module field overrides dynamic blog post content #}
+  {% set story_prose = module.content|default(module.excerpt|default(featured.post_list_content)) %}
+
 <section class="sw-feat">
   <div class="sw-feat__inner">
 
@@ -10,22 +46,15 @@
     </div>
 
     <div class="sw-feat__head sw-reveal sw-reveal--delay-1">
-      {% set tag = module.category_tag|default(module.tag) %}
-      {% if tag %}<p class="sw-feat__label sw-feat__label--center">{{ tag }}</p>{% endif %}
-      <h2 class="sw-feat__title">{{ br_lines(module.heading) }}</h2>
-      {% set sub = module.subheading|default(module.summary) %}
-      {% if sub %}<p class="sw-feat__sub">{{ br_lines(sub) }}</p>{% endif %}
+      {% if tag %}<p class="sw-feat__label sw-feat__label--center">{{ tag.name }}</p>{% endif %}
+      <h2 class="sw-feat__title">{{ featured.name }}</h2>
+      {% if summary %}<p class="sw-feat__sub">{{ summary }}</p>{% endif %}
     </div>
 
-    {% set img_src = module.image.src|default(module.image|default(module.featured_image.src|default(module.featured_image))) %}
-    {% set img_alt = module.image.alt|default(module.image_alt|default(module.heading)) %}
     {% if img_src %}
     <figure class="sw-feat__media sw-reveal sw-reveal--delay-2">
       <img class="sw-feat__img" src="{{ img_src }}" alt="{{ img_alt }}" loading="lazy">
-      {% set caption = module.image_caption|default(module.caption|default(module.caption_prefix)) %}
-      {% if caption %}
-      <figcaption class="sw-feat__caption">{{ caption }}</figcaption>
-      {% endif %}
+      <figcaption class="sw-feat__caption">{{ module.caption_prefix }}{% if num %} / {% if num < 10 %}0{% endif %}{{ num }}{% endif %}</figcaption>
     </figure>
     {% endif %}
 
@@ -37,22 +66,16 @@
       </div>
       {% endif %}
       <div class="sw-feat__prose sw-reveal sw-reveal--delay-1">
-        {{ module.content|default(module.prose|default(module.excerpt)) }}
+        {{ story_prose }}
       </div>
     </div>
 
     <div class="sw-feat__end sw-reveal">
       {% if module.end_heading %}<p class="sw-feat__end-title">{{ br_lines(module.end_heading) }}</p>{% endif %}
       {% if module.end_text %}<p class="sw-feat__end-text">{{ module.end_text }}</p>{% endif %}
-      {% if module.button_text %}
-        {% set btn_href = module.button_link.url.href|default(module.button_link.url|default(module.button_link|default(module.stories_page_link.url.href|default('')))) %}
-        {% if btn_href %}
-          <a class="sw-feat__btn" href="{{ btn_href }}">{{ module.button_text }}</a>
-        {% else %}
-          <span class="sw-feat__btn">{{ module.button_text }}</span>
-        {% endif %}
-      {% endif %}
+      <a class="sw-feat__btn" href="{{ module.stories_page_link.url.href }}#story-{{ featured.id }}">{{ module.button_text }}</a>
     </div>
 
   </div>
 </section>
+{% endif %}
