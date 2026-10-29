@@ -4,19 +4,19 @@
 <section class="sw-explore">
   <div class="sw-explore__inner">
 
-    <div class="sw-explore__top sw-reveal">
+    <div class="sw-explore__top">
       <p class="sw-explore__label">{{ module.top_label }}</p>
     </div>
 
     <div class="sw-explore__head">
-      <h2 class="sw-explore__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.heading) }}</h2>
-      <p class="sw-explore__intro sw-reveal sw-reveal--delay-2">{{ br_lines(module.intro) }}</p>
+      <h2 class="sw-explore__title">{{ br_lines(module.heading) }}</h2>
+      <p class="sw-explore__intro">{{ br_lines(module.intro) }}</p>
     </div>
 
     <ol class="sw-explore__list">
       {% for row in module.rows %}
       {% set href = row.row_link.url.href %}
-      <li class="sw-explore__row sw-reveal sw-reveal--delay-{{ loop.index }}">
+      <li class="sw-explore__row">
         <span class="sw-explore__num">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
         <h3 class="sw-explore__name">{{ row.row_title }}</h3>
         <p class="sw-explore__text">{{ br_lines(row.row_text) }}</p>

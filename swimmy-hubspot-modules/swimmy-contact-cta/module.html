@@ -5,7 +5,7 @@
   <div class="sw-cta__inner">
     <div class="sw-cta__layout">
 
-      <div class="sw-cta__left sw-reveal">
+      <div class="sw-cta__left">
         <h2 class="sw-cta__big">{{ module.big_word }}</h2>
         {% set arrow_href = module.button_link.url.href %}
         {% if arrow_href %}
@@ -15,7 +15,7 @@
         {% endif %}
       </div>
 
-      <div class="sw-cta__copy sw-reveal sw-reveal--delay-2">
+      <div class="sw-cta__copy">
         <p class="sw-cta__message">{{ br_lines(module.message) }}</p>
 
         {% if module.button_text %}

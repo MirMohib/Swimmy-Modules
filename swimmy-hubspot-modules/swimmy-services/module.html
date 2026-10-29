@@ -8,7 +8,7 @@
       <div class="sw-svc__rule"></div>
       <div class="sw-svc__row{% if not sec.sec_image.src %} sw-svc__row--noimg{% endif %}">
 
-        <div class="sw-svc__copy sw-reveal">
+        <div class="sw-svc__copy">
           <p class="sw-svc__label">{% if n < 10 %}0{% endif %}{{ n }} / {{ sec.sec_name }}</p>
           {% if sec.sec_icon.src %}
           <img class="sw-svc__icon" src="{{ sec.sec_icon.src }}" alt="" width="32" height="32">
@@ -18,7 +18,7 @@
         </div>
 
         {% if sec.sec_image.src %}
-        <div class="sw-svc__media sw-reveal sw-reveal--delay-2">
+        <div class="sw-svc__media">
           <img class="sw-svc__img" src="{{ sec.sec_image.src }}" alt="{{ sec.sec_image.alt }}" loading="lazy">
         </div>
         {% endif %}

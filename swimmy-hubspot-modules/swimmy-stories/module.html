@@ -9,14 +9,14 @@
 <section class="sw-stories">
   <div class="sw-stories__inner">
 
-    <div class="sw-stories__top sw-reveal">
+    <div class="sw-stories__top">
       <p class="sw-label">{{ module.top_label_left }}</p>
       <p class="sw-label sw-label--muted">{{ module.top_label_right }}</p>
     </div>
 
     <div class="sw-stories__head">
-      <h2 class="sw-stories__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h2>
-      <p class="sw-stories__intro sw-reveal sw-reveal--delay-2">{{ br_lines(module.intro) }}</p>
+      <h2 class="sw-stories__title">{{ module.heading }}</h2>
+      <p class="sw-stories__intro">{{ br_lines(module.intro) }}</p>
     </div>
 
     <div class="sw-stories__list">
@@ -29,7 +29,7 @@
         {% set tag = cats|first %}
         {% set summary = post.meta_description %}
         {% if not summary %}{% set summary = post.post_list_content|striptags|truncate(80) %}{% endif %}
-        <article class="sw-story{% if not post.featured_image %} sw-story--noimg{% endif %} sw-reveal">
+        <article class="sw-story{% if not post.featured_image %} sw-story--noimg{% endif %}">
           <div class="sw-story__copy">
             <p class="sw-label">{% if n < 10 %}0{% endif %}{{ n }}{% if tag %} — {{ tag.name }}{% endif %}</p>
             <h3 class="sw-story__title">{{ post.name }}</h3>
@@ -43,7 +43,7 @@
       {% endfor %}
     </div>
 
-    <div class="sw-stories__all sw-reveal">
+    <div class="sw-stories__all">
       <a class="sw-link" href="{{ module.stories_page_link.url.href }}">{{ module.all_text }}</a>
     </div>
 

@@ -20,25 +20,4 @@
   </div>
 </section>
 
-<script>
-/* Scroll-reveal helper shared across all Swimmy modules */
-(function () {
-  if (typeof IntersectionObserver === 'undefined') return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('sw-revealed');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  function observe() {
-    document.querySelectorAll('.sw-reveal').forEach(function (el) { io.observe(el); });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observe);
-  } else {
-    observe();
-  }
-})();
-</script>
+

@@ -5,15 +5,15 @@
 <section class="sw-sintro">
   <div class="sw-sintro__inner">
 
-    <p class="sw-sintro__label sw-reveal">{{ module.top_label }}</p>
-    <h1 class="sw-sintro__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h1>
+    <p class="sw-sintro__label">{{ module.top_label }}</p>
+    <h1 class="sw-sintro__title">{{ module.heading }}</h1>
 
     {% if module.intro %}
-    <div class="sw-sintro__intro sw-reveal sw-reveal--delay-2">{{ module.intro }}</div>
+    <div class="sw-sintro__intro">{{ module.intro }}</div>
     {% endif %}
 
     {% if ordered|length > 0 %}
-    <nav class="sw-sintro__index sw-reveal sw-reveal--delay-3" id="story-index" aria-label="Story index">
+    <nav class="sw-sintro__index" id="story-index" aria-label="Story index">
       {% for post in ordered %}
         {% set n = loop.index %}
         {% set jp = [] %}

@@ -4,14 +4,14 @@
 <section class="sw-intro">
   <div class="sw-intro__inner">
 
-    <div class="sw-intro__top sw-reveal">
+    <div class="sw-intro__top">
       <p class="sw-intro__label">{{ module.top_label_left }}</p>
       <p class="sw-intro__label sw-intro__label--muted">{{ module.top_label_right }}</p>
     </div>
 
     <div class="sw-intro__head">
-      <h2 class="sw-intro__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.intro_heading) }}</h2>
-      <div class="sw-intro__prose sw-reveal sw-reveal--delay-2">
+      <h2 class="sw-intro__title">{{ br_lines(module.intro_heading) }}</h2>
+      <div class="sw-intro__prose">
         <p class="sw-intro__lead">{{ br_lines(module.intro_lead) }}</p>
         <p class="sw-intro__note">{{ br_lines(module.intro_note) }}</p>
       </div>
@@ -19,7 +19,7 @@
 
     <div class="sw-intro__cols">
 
-      <article class="sw-intro__item sw-reveal sw-reveal--delay-1">
+      <article class="sw-intro__item">
         <p class="sw-intro__label">{{ module.svc_label }}</p>
         <h3 class="sw-intro__h3">{{ br_lines(module.svc_heading) }}</h3>
         <ul class="sw-intro__list">
@@ -31,7 +31,7 @@
         <a class="sw-link" href="{{ module.svc_link.url.href }}">{{ module.svc_link_text }}</a>
       </article>
 
-      <article class="sw-intro__item sw-reveal sw-reveal--delay-2">
+      <article class="sw-intro__item">
         <p class="sw-intro__label">{{ module.spot_label }}</p>
         {% if module.spot_image.src %}
         <img class="sw-intro__img" src="{{ module.spot_image.src }}" alt="{{ module.spot_image.alt }}" loading="lazy">
@@ -41,7 +41,7 @@
         <a class="sw-link" href="{{ module.spot_link.url.href }}">{{ module.spot_link_text }}</a>
       </article>
 
-      <article class="sw-intro__item sw-intro__item--story sw-reveal sw-reveal--delay-3">
+      <article class="sw-intro__item sw-intro__item--story">
         <p class="sw-intro__label">{{ module.story_label }}</p>
         <h3 class="sw-intro__h3 sw-intro__h3--story">{{ br_lines(module.story_heading) }}</h3>
         <span class="sw-intro__rule"></span>

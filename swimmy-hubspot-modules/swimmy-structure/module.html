@@ -4,15 +4,15 @@
 <section class="sw-st sw-st--{{ module.bg_color or 'grey' }}">
   <div class="sw-st__inner">
 
-    <p class="sw-st__label sw-reveal">{{ module.top_label }}</p>
-    <h2 class="sw-st__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h2>
+    <p class="sw-st__label">{{ module.top_label }}</p>
+    <h2 class="sw-st__title">{{ module.heading }}</h2>
     {% if module.intro %}
-    <p class="sw-st__intro sw-reveal sw-reveal--delay-2">{{ br_lines(module.intro) }}</p>
+    <p class="sw-st__intro">{{ br_lines(module.intro) }}</p>
     {% endif %}
 
     <div class="sw-st__list">
       {% for row in module.rows %}
-      <div class="sw-st__group sw-reveal sw-reveal--delay-{{ loop.index }}">
+      <div class="sw-st__group">
         <div class="sw-st__rule"></div>
         <div class="sw-st__row">
           <p class="sw-st__term">{{ row.row_term }}</p>

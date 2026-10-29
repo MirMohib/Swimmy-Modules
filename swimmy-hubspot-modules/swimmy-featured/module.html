@@ -40,19 +40,19 @@
 <section class="sw-feat">
   <div class="sw-feat__inner">
 
-    <div class="sw-feat__top sw-reveal">
+    <div class="sw-feat__top">
       <p class="sw-feat__label">{{ module.top_label_left }}</p>
       <p class="sw-feat__label sw-feat__label--muted">{{ module.top_label_right }}</p>
     </div>
 
-    <div class="sw-feat__head sw-reveal sw-reveal--delay-1">
+    <div class="sw-feat__head">
       {% if tag %}<p class="sw-feat__label sw-feat__label--center">{{ tag.name }}</p>{% endif %}
       <h2 class="sw-feat__title">{{ featured.name }}</h2>
       {% if summary %}<p class="sw-feat__sub">{{ summary }}</p>{% endif %}
     </div>
 
     {% if img_src %}
-    <figure class="sw-feat__media sw-reveal sw-reveal--delay-2">
+    <figure class="sw-feat__media">
       <img class="sw-feat__img" src="{{ img_src }}" alt="{{ img_alt }}" loading="lazy">
       <figcaption class="sw-feat__caption">{{ module.caption_prefix }}{% if num %} / {% if num < 10 %}0{% endif %}{{ num }}{% endif %}</figcaption>
     </figure>
@@ -60,17 +60,17 @@
 
     <div class="sw-feat__body">
       {% if module.aside_big or module.aside_text %}
-      <div class="sw-feat__aside sw-reveal">
+      <div class="sw-feat__aside">
         {% if module.aside_big %}<p class="sw-feat__big">{{ module.aside_big }}</p>{% endif %}
         {% if module.aside_text %}<p class="sw-feat__aside-text">{{ br_lines(module.aside_text) }}</p>{% endif %}
       </div>
       {% endif %}
-      <div class="sw-feat__prose sw-reveal sw-reveal--delay-1">
+      <div class="sw-feat__prose">
         {{ story_prose }}
       </div>
     </div>
 
-    <div class="sw-feat__end sw-reveal">
+    <div class="sw-feat__end">
       {% if module.end_heading %}<p class="sw-feat__end-title">{{ br_lines(module.end_heading) }}</p>{% endif %}
       {% if module.end_text %}<p class="sw-feat__end-text">{{ module.end_text }}</p>{% endif %}
       <a class="sw-feat__btn" href="{{ module.stories_page_link.url.href }}#story-{{ featured.id }}">{{ module.button_text }}</a>
