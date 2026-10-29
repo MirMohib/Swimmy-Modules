@@ -1,0 +1,46 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+{# layout: wide (big heading + wide image) / split (image + copy) / text #}
+{% set mode = 'text' %}
+{% if module.big_heading %}
+  {% set mode = 'wide' %}
+{% elif module.image.src %}
+  {% set mode = 'split' %}
+{% endif %}
+
+<section class="sw-ts sw-ts--{{ module.bg_color or 'white' }}{% if mode == 'split' %} sw-ts--img sw-ts--img-{{ module.image_side or 'left' }}{% elif mode == 'wide' %} sw-ts--wide{% endif %}">
+  <div class="sw-ts__inner">
+
+    <p class="sw-ts__label">{{ module.top_label }}</p>
+
+    {% if mode == 'wide' %}
+      <h2 class="sw-ts__bigtitle">{{ br_lines(module.big_heading) }}</h2>
+      {% if module.image.src %}
+        <img class="sw-ts__wideimg" src="{{ module.image.src }}" alt="{{ module.image.alt }}" loading="lazy">
+      {% endif %}
+      <div class="sw-ts__layout">
+        <h2 class="sw-ts__title">{{ br_lines(module.heading) }}</h2>
+        <div class="sw-ts__prose">{{ module.prose }}</div>
+      </div>
+
+    {% elif mode == 'split' %}
+      <div class="sw-ts__layout">
+        <div class="sw-ts__media">
+          <img class="sw-ts__img" src="{{ module.image.src }}" alt="{{ module.image.alt }}" loading="lazy">
+        </div>
+        <div class="sw-ts__copy">
+          <h2 class="sw-ts__title">{{ br_lines(module.heading) }}</h2>
+          <div class="sw-ts__prose">{{ module.prose }}</div>
+        </div>
+      </div>
+
+    {% else %}
+      <div class="sw-ts__layout">
+        <h2 class="sw-ts__title">{{ br_lines(module.heading) }}</h2>
+        <div class="sw-ts__prose">{{ module.prose }}</div>
+      </div>
+    {% endif %}
+
+  </div>
+</section>

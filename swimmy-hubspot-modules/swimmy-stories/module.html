@@ -1,0 +1,51 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+{% set limit = module.max_posts|int %}
+{% if limit < 1 %}{% set limit = 50 %}{% endif %}
+{% set posts = blog_recent_posts('default', limit) %}
+{% set ordered = posts if module.newest_first else posts|reverse %}
+
+<section class="sw-stories">
+  <div class="sw-stories__inner">
+
+    <div class="sw-stories__top sw-reveal">
+      <p class="sw-label">{{ module.top_label_left }}</p>
+      <p class="sw-label sw-label--muted">{{ module.top_label_right }}</p>
+    </div>
+
+    <div class="sw-stories__head">
+      <h2 class="sw-stories__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h2>
+      <p class="sw-stories__intro sw-reveal sw-reveal--delay-2">{{ br_lines(module.intro) }}</p>
+    </div>
+
+    <div class="sw-stories__list">
+      {% for post in ordered %}
+        {% set n = loop.index %}
+        {% set cats = [] %}
+        {% for t in post.tag_list %}
+          {% if (t.name|regex_replace('[ -~]', ''))|length == 0 %}{% do cats.append(t) %}{% endif %}
+        {% endfor %}
+        {% set tag = cats|first %}
+        {% set summary = post.meta_description %}
+        {% if not summary %}{% set summary = post.post_list_content|striptags|truncate(80) %}{% endif %}
+        <article class="sw-story{% if not post.featured_image %} sw-story--noimg{% endif %} sw-reveal">
+          <div class="sw-story__copy">
+            <p class="sw-label">{% if n < 10 %}0{% endif %}{{ n }}{% if tag %} — {{ tag.name }}{% endif %}</p>
+            <h3 class="sw-story__title">{{ post.name }}</h3>
+            <p class="sw-story__summary">{{ summary }}</p>
+            <a class="sw-link" href="{{ module.stories_page_link.url.href }}#story-{{ post.id }}">{{ module.read_text }}</a>
+          </div>
+          {% if post.featured_image %}
+          <img class="sw-story__img" src="{{ post.featured_image }}" alt="{{ post.featured_image_alt_text }}" loading="lazy">
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="sw-stories__all sw-reveal">
+      <a class="sw-link" href="{{ module.stories_page_link.url.href }}">{{ module.all_text }}</a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,93 @@
+/* =============================================
+   SCROLL-REVEAL UTILITY
+   ============================================= */
+.sw-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sw-reveal.sw-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sw-reveal--delay-1 { transition-delay: 0.1s; }
+.sw-reveal--delay-2 { transition-delay: 0.22s; }
+.sw-reveal--delay-3 { transition-delay: 0.34s; }
+.sw-reveal--delay-4 { transition-delay: 0.46s; }
+@media (prefers-reduced-motion: reduce) {
+  .sw-reveal { opacity: 1; transform: none; transition: none; }
+}
+/* ============================================= */
+.sw-phero {
+  --sw-font: 'Gothic A1', 'Noto Sans JP', sans-serif;
+  --sw-text: #24313b;
+  --sw-blue: #55798f;
+
+  box-sizing: border-box;
+  padding: clamp(80px, 12.5vw, 180px) clamp(20px, 6.94vw, 100px);
+  background: #fff;
+  font-family: var(--sw-font);
+  color: var(--sw-text);
+}
+.sw-phero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5.28vw, 76px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.sw-phero :is(p, h1) { margin: 0; padding: 0; }
+
+.sw-phero p.sw-phero__label {
+  font-family: var(--sw-font);
+  font-size: clamp(12px, 1.11vw, 16px);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: var(--sw-blue);
+}
+.sw-phero h1.sw-phero__title {
+  max-width: 1100px;
+  font-family: var(--sw-font);
+  font-size: clamp(32px, 4.44vw, 64px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-phero .sw-phero__intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.22vw, 32px);
+  max-width: 1052px;
+  font-family: var(--sw-font);
+}
+.sw-phero .sw-phero__intro p {
+  margin: 0;
+  font-size: clamp(16px, 1.53vw, 22px);
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Narrow intro variant (Our Story: 820px, weight 600) */
+.sw-phero--narrow .sw-phero__intro { max-width: 820px; }
+.sw-phero--narrow .sw-phero__intro p { font-weight: 600; }
+
+/* =============================================
+   PAGE HERO ANIMATIONS
+   ============================================= */
+
+/* Label + title: staggered fade-up (uses global sw-reveal utility) */
+
+/* Title: very slight character-by-character feel via word spacing */
+.sw-phero h1.sw-phero__title {
+  transition: letter-spacing 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-phero h1.sw-phero__title { transition: none; }
+}
+/* ============================================= */

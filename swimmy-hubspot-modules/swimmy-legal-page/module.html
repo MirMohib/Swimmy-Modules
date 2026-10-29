@@ -1,0 +1,14 @@
+
+<section class="sw-lg">
+  <div class="sw-lg__inner">
+
+    <p class="sw-lg__label">{{ module.top_label }}</p>
+    <h1 class="sw-lg__title">{{ module.heading }}</h1>
+    {% if module.updated_text %}
+      <p class="sw-lg__date">{{ module.updated_text }}</p>
+    {% endif %}
+
+    <div class="sw-lg__body">{{ module.content_body }}</div>
+
+  </div>
+</section>

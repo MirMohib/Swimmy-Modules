@@ -1,0 +1,25 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-tr">
+  <div class="sw-tr__inner">
+
+    <p class="sw-tr__label">{{ module.top_label }}</p>
+    {% if module.heading %}
+    <h2 class="sw-tr__title">{{ br_lines(module.heading) }}</h2>
+    {% endif %}
+
+    <div class="sw-tr__list">
+      {% for row in module.beliefs %}
+      <div class="sw-tr__item">
+        <div class="sw-tr__rule"></div>
+        <div class="sw-tr__row">
+          <p class="sw-tr__term">{{ row.row_term }}</p>
+          <div class="sw-tr__text">{{ row.row_text }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>

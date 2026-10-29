@@ -1,0 +1,12 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-phero{% if module.narrow_intro %} sw-phero--narrow{% endif %}">
+  <div class="sw-phero__inner">
+    <p class="sw-phero__label sw-reveal">{{ module.top_label }}</p>
+    <h1 class="sw-phero__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.heading) }}</h1>
+    {% if module.intro %}
+    <div class="sw-phero__intro sw-reveal sw-reveal--delay-2">{{ module.intro }}</div>
+    {% endif %}
+  </div>
+</section>

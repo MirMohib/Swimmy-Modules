@@ -1,0 +1,27 @@
+
+<section class="sw-kf">
+  <div class="sw-kf__inner">
+
+    <p class="sw-kf__label sw-reveal">{{ module.top_label }}</p>
+    <h2 class="sw-kf__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h2>
+
+    {% if module.as_of %}
+    <p class="sw-kf__asof sw-reveal sw-reveal--delay-2">{{ module.as_of }}</p>
+    {% endif %}
+
+    <div class="sw-kf__grid">
+      {% for s in module.stats %}
+      <div class="sw-kf__stat sw-reveal sw-reveal--delay-{{ loop.index }}">
+        <p class="sw-kf__num">{{ s.stat_number }}</p>
+        <p class="sw-kf__name">{{ s.stat_label }}</p>
+        <div class="sw-kf__rule"></div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if module.footnote %}
+    <p class="sw-kf__note sw-reveal">{{ module.footnote }}</p>
+    {% endif %}
+
+  </div>
+</section>

@@ -1,0 +1,33 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-cta">
+  <div class="sw-cta__inner">
+    <div class="sw-cta__layout">
+
+      <div class="sw-cta__left sw-reveal">
+        <h2 class="sw-cta__big">{{ module.big_word }}</h2>
+        {% set arrow_href = module.button_link.url.href %}
+        {% if arrow_href %}
+          <a class="sw-cta__arrow" href="{{ arrow_href }}" aria-label="{{ module.button_text }}">↗</a>
+        {% else %}
+          <span class="sw-cta__arrow" aria-hidden="true">↗</span>
+        {% endif %}
+      </div>
+
+      <div class="sw-cta__copy sw-reveal sw-reveal--delay-2">
+        <p class="sw-cta__message">{{ br_lines(module.message) }}</p>
+
+        {% if module.button_text %}
+          {% set btn = module.button_link.url.href %}
+          {% if btn %}
+            <a class="sw-cta__btn" href="{{ btn }}">{{ module.button_text }}</a>
+          {% else %}
+            <span class="sw-cta__btn">{{ module.button_text }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,146 @@
+.sw-cf {
+  --sw-font: 'Gothic A1', 'Noto Sans JP', sans-serif;
+  --sw-text: #24313b;
+  --sw-muted: #657984;
+  --sw-line: #dce5e7;
+  --sw-navy: #233e55;
+
+  box-sizing: border-box;
+  padding: clamp(40px, 4.17vw, 60px) 20px clamp(80px, 12.5vw, 180px);
+  background: #fff;
+  font-family: var(--sw-font);
+  color: var(--sw-text);
+}
+.sw-cf__inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Form reset (legacy HubSpot form) */
+.sw-cf .hs-form fieldset {
+  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.sw-cf .hs-form fieldset .input { margin-right: 0 !important; }
+.sw-cf .hs-form-field {
+  float: none !important;
+  width: 100% !important;
+  margin: 0 0 clamp(32px, 4.44vw, 64px);
+  padding: 0;
+}
+
+/* Label */
+.sw-cf .hs-form label {
+  display: block;
+  margin: 0 0 24px;
+  float: none;
+  font-family: var(--sw-font);
+  font-size: clamp(14px, 1.11vw, 16px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--sw-text);
+}
+.sw-cf .hs-form-required {
+  margin-left: 4px;
+  color: var(--sw-text);
+}
+
+/* Inputs: underline only */
+.sw-cf .hs-input,
+.sw-cf input.hs-input,
+.sw-cf select.hs-input,
+.sw-cf textarea.hs-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100% !important;
+  height: auto;
+  margin: 0;
+  padding: 0 0 36px;
+  border: 0;
+  border-bottom: 1px solid var(--sw-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--sw-font);
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 400;
+  line-height: 2;
+  color: var(--sw-text);
+  outline: none;
+}
+.sw-cf .hs-input::placeholder { color: var(--sw-muted); opacity: 1; }
+.sw-cf .hs-input:focus { border-bottom-color: var(--sw-navy); }
+
+/* Select: custom chevron, placeholder colour */
+.sw-cf select.hs-input {
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--sw-muted);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2355798f' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 0 top 14px;
+}
+.sw-cf select.hs-input:valid:not(:has(option:checked[value=""])) { color: var(--sw-text); }
+@media (min-width: 768px) {
+  .sw-cf select.hs-input { background-position: 315px 14px; }
+}
+
+/* Message: 217px + hairline */
+.sw-cf textarea.hs-input {
+  height: 217px;
+  min-height: 217px;
+  padding: 0;
+  resize: vertical;
+}
+
+/* Required note, just above the button */
+.sw-cf .hs_submit::before {
+  content: var(--sw-note);
+  display: block;
+  margin-bottom: clamp(32px, 4.44vw, 64px);
+  font-size: clamp(14px, 1.11vw, 16px);
+  line-height: 1.7;
+  color: var(--sw-text);
+}
+.sw-cf .hs_submit .actions { margin: 0; padding: 0; }
+
+/* Button */
+.sw-cf .hs-button,
+.sw-cf input.hs-button.primary {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: clamp(64px, 5.83vw, 84px);
+  margin: 0;
+  padding: 0 32px;
+  border: 0;
+  border-radius: 0;
+  background: var(--sw-navy);
+  box-shadow: none;
+  font-family: var(--sw-font);
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-weight: 400;
+  line-height: 2;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.sw-cf .hs-button:hover { opacity: .88; }
+
+/* Errors / thank-you */
+.sw-cf .hs-error-msgs {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.sw-cf .hs-error-msg,
+.sw-cf .hs-error-msgs label {
+  margin: 0;
+  font-size: 14px;
+  color: #b3433f;
+}
+.sw-cf .submitted-message {
+  font-size: clamp(16px, 1.53vw, 22px);
+  line-height: 2;
+}

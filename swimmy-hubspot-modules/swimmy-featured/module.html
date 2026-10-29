@@ -1,0 +1,58 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-feat">
+  <div class="sw-feat__inner">
+
+    <div class="sw-feat__top sw-reveal">
+      <p class="sw-feat__label">{{ module.top_label_left }}</p>
+      <p class="sw-feat__label sw-feat__label--muted">{{ module.top_label_right }}</p>
+    </div>
+
+    <div class="sw-feat__head sw-reveal sw-reveal--delay-1">
+      {% set tag = module.category_tag|default(module.tag) %}
+      {% if tag %}<p class="sw-feat__label sw-feat__label--center">{{ tag }}</p>{% endif %}
+      <h2 class="sw-feat__title">{{ br_lines(module.heading) }}</h2>
+      {% set sub = module.subheading|default(module.summary) %}
+      {% if sub %}<p class="sw-feat__sub">{{ br_lines(sub) }}</p>{% endif %}
+    </div>
+
+    {% set img_src = module.image.src|default(module.image|default(module.featured_image.src|default(module.featured_image))) %}
+    {% set img_alt = module.image.alt|default(module.image_alt|default(module.heading)) %}
+    {% if img_src %}
+    <figure class="sw-feat__media sw-reveal sw-reveal--delay-2">
+      <img class="sw-feat__img" src="{{ img_src }}" alt="{{ img_alt }}" loading="lazy">
+      {% set caption = module.image_caption|default(module.caption|default(module.caption_prefix)) %}
+      {% if caption %}
+      <figcaption class="sw-feat__caption">{{ caption }}</figcaption>
+      {% endif %}
+    </figure>
+    {% endif %}
+
+    <div class="sw-feat__body">
+      {% if module.aside_big or module.aside_text %}
+      <div class="sw-feat__aside sw-reveal">
+        {% if module.aside_big %}<p class="sw-feat__big">{{ module.aside_big }}</p>{% endif %}
+        {% if module.aside_text %}<p class="sw-feat__aside-text">{{ br_lines(module.aside_text) }}</p>{% endif %}
+      </div>
+      {% endif %}
+      <div class="sw-feat__prose sw-reveal sw-reveal--delay-1">
+        {{ module.content|default(module.prose|default(module.excerpt)) }}
+      </div>
+    </div>
+
+    <div class="sw-feat__end sw-reveal">
+      {% if module.end_heading %}<p class="sw-feat__end-title">{{ br_lines(module.end_heading) }}</p>{% endif %}
+      {% if module.end_text %}<p class="sw-feat__end-text">{{ module.end_text }}</p>{% endif %}
+      {% if module.button_text %}
+        {% set btn_href = module.button_link.url.href|default(module.button_link.url|default(module.button_link|default(module.stories_page_link.url.href|default('')))) %}
+        {% if btn_href %}
+          <a class="sw-feat__btn" href="{{ btn_href }}">{{ module.button_text }}</a>
+        {% else %}
+          <span class="sw-feat__btn">{{ module.button_text }}</span>
+        {% endif %}
+      {% endif %}
+    </div>
+
+  </div>
+</section>

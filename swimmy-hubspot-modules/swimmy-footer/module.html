@@ -1,0 +1,38 @@
+
+<footer class="sw-ft">
+  <div class="sw-ft__inner">
+
+    <div class="sw-ft__main">
+      <div class="sw-ft__brand">
+        <a class="sw-ft__logo" href="{{ site_settings.logo_link|default('/') }}">
+          {% if site_settings.logo_src %}
+            <img class="sw-ft__logo-img" src="{{ site_settings.logo_src }}" alt="{{ site_settings.logo_alt|default(site_settings.company_name) }}">
+          {% else %}
+            {{ site_settings.company_name|default('Swimmy') }}
+          {% endif %}
+        </a>
+        <p class="sw-ft__tagline">{{ module.tagline }}</p>
+      </div>
+
+      <nav class="sw-ft__nav" aria-label="Footer">
+        {% for item in menu(module.main_menu) %}
+          <a class="sw-ft__navlink" href="{{ item.url }}">{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+
+    <div class="sw-ft__bottom">
+      <p class="sw-ft__copy">© {{ local_dt.year }} Swimmy. All rights reserved.</p>
+
+      <div class="sw-ft__legal">
+        {% for item in menu(module.legal_menu) %}
+          <a class="sw-ft__small" href="{{ item.url }}">{{ item.label }}</a>
+        {% endfor %}
+        {% if module.top_text %}
+          <a class="sw-ft__small" href="#">{{ module.top_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</footer>

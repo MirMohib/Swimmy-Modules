@@ -1,0 +1,95 @@
+.sw-tr {
+  --sw-font: 'Gothic A1', 'Noto Sans JP', sans-serif;
+  --sw-text: #24313b;
+  --sw-blue: #55798f;
+
+  box-sizing: border-box;
+  padding: clamp(80px, 12.5vw, 180px) clamp(20px, 6.94vw, 100px);
+  background: #fff;
+  font-family: var(--sw-font);
+  color: var(--sw-text);
+}
+.sw-tr__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5.28vw, 76px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.sw-tr :is(p, h2) { margin: 0; padding: 0; }
+
+.sw-tr p.sw-tr__label {
+  font-family: var(--sw-font);
+  font-size: clamp(12px, 1.11vw, 16px);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: var(--sw-blue);
+}
+.sw-tr h2.sw-tr__title {
+  max-width: 1100px;
+  font-family: var(--sw-font);
+  font-size: clamp(24px, 2.64vw, 38px);
+  font-weight: 700;
+  line-height: 1.75;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Rows */
+.sw-tr__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5.28vw, 76px);
+}
+.sw-tr__item {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.33vw, 48px);
+}
+.sw-tr__rule {
+  height: 1px;
+  background: #dce5e7;
+}
+.sw-tr__row {
+  display: grid;
+  grid-template-columns: 320fr 800fr;
+  column-gap: clamp(40px, 8.33vw, 120px);
+  align-items: start;
+}
+.sw-tr p.sw-tr__term {
+  font-family: var(--sw-font);
+  font-size: clamp(17px, 1.53vw, 22px);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-tr .sw-tr__text {
+  font-family: var(--sw-font);
+}
+.sw-tr .sw-tr__text p {
+  margin: 0;
+  font-size: clamp(15px, 1.39vw, 20px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-tr .sw-tr__text h4 {
+  margin: 0;
+  font-family: var(--sw-font);
+  font-size: clamp(14px, 1.25vw, 18px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-tr .sw-tr__text p + p,
+.sw-tr .sw-tr__text p + h4,
+.sw-tr .sw-tr__text h4 + p { margin-top: clamp(14px, 1.67vw, 24px); }
+
+/* Tablet / mobile */
+@media (max-width: 960px) {
+  .sw-tr__row { grid-template-columns: 1fr; row-gap: 8px; }
+}

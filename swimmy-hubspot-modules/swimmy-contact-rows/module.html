@@ -1,0 +1,24 @@
+
+<section class="sw-ct">
+  <div class="sw-ct__inner">
+
+    <p class="sw-ct__label">{{ module.top_label }}</p>
+    <h2 class="sw-ct__title">{{ module.heading_line1 }}<br>{{ module.heading_line2 }}</h2>
+
+    {% for row in module.rows %}
+      <div class="sw-ct__line"></div>
+      <div class="sw-ct__row">
+        <p class="sw-ct__name">{{ row.row_label }}</p>
+        {% if row.link_text %}
+          {% set href = row.row_link.url.href %}
+          {% if href %}
+            <a class="sw-ct__link" href="{{ href }}">{{ row.link_text }}</a>
+          {% else %}
+            <span class="sw-ct__link">{{ row.link_text }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+</section>

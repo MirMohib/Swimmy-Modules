@@ -1,0 +1,44 @@
+
+<section class="sw-hero">
+  {% if module.bg_image.src %}
+  <div class="sw-hero__photo">
+    <img src="{{ module.bg_image.src }}" alt="{{ module.bg_image.alt }}" loading="eager">
+  </div>
+  {% endif %}
+  <div class="sw-hero__inner">
+    <div class="sw-hero__copy">
+      <p class="sw-hero__eyebrow">{{ module.eyebrow }}</p>
+      <h1 class="sw-hero__title">{{ module.heading_line1 }}<br>{{ module.heading_line2 }}</h1>
+      <p class="sw-hero__sub">{{ module.subheading }}</p>
+      <div class="sw-hero__body">{{ module.intro_text }}</div>
+      <div class="sw-hero__actions">
+        <a class="sw-btn sw-btn--filled" href="{{ module.button_1_link.url.href }}">{{ module.button_1_text }}</a>
+        <a class="sw-btn sw-btn--link" href="{{ module.button_2_link.url.href }}">{{ module.button_2_text }}</a>
+      </div>
+      <p class="sw-hero__scroll">{{ module.scroll_text }}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scroll-reveal helper shared across all Swimmy modules */
+(function () {
+  if (typeof IntersectionObserver === 'undefined') return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('sw-revealed');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  function observe() {
+    document.querySelectorAll('.sw-reveal').forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observe);
+  } else {
+    observe();
+  }
+})();
+</script>

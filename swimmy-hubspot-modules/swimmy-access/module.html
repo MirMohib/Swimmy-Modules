@@ -1,0 +1,24 @@
+
+<section class="sw-ac">
+  <div class="sw-ac__inner">
+
+    <p class="sw-ac__label sw-reveal">{{ module.top_label }}</p>
+    <h2 class="sw-ac__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h2>
+
+    <div class="sw-ac__box sw-reveal sw-reveal--delay-2">
+      <p class="sw-ac__place">{{ module.box_heading }}</p>
+      {% if module.box_text %}
+      <p class="sw-ac__text">{{ module.box_text }}</p>
+      {% endif %}
+      {% if module.link_text %}
+        {% set href = module.link.url.href %}
+        {% if href %}
+          <a class="sw-ac__link" href="{{ href }}">{{ module.link_text }}</a>
+        {% else %}
+          <span class="sw-ac__link">{{ module.link_text }}</span>
+        {% endif %}
+      {% endif %}
+    </div>
+
+  </div>
+</section>

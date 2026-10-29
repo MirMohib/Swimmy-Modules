@@ -1,0 +1,178 @@
+/* =============================================
+   SCROLL-REVEAL UTILITY
+   ============================================= */
+.sw-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sw-reveal.sw-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sw-reveal--delay-1 { transition-delay: 0.1s; }
+.sw-reveal--delay-2 { transition-delay: 0.22s; }
+.sw-reveal--delay-3 { transition-delay: 0.34s; }
+.sw-reveal--delay-4 { transition-delay: 0.46s; }
+@media (prefers-reduced-motion: reduce) {
+  .sw-reveal { opacity: 1; transform: none; transition: none; }
+}
+/* ============================================= */
+.sw-st {
+  --sw-font: 'Gothic A1', 'Noto Sans JP', sans-serif;
+  --sw-text: #24313b;
+  --sw-blue: #55798f;
+
+  box-sizing: border-box;
+  padding: clamp(80px, 12.5vw, 180px) clamp(20px, 6.94vw, 100px);
+  background: #f8f9f7;
+  font-family: var(--sw-font);
+  color: var(--sw-text);
+}
+.sw-st--white { background: #fff; }
+.sw-st--grey { background: #f8f9f7; }
+.sw-st--blue { background: #e7eef0; }
+
+.sw-st__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(40px, 5.28vw, 76px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.sw-st :is(p, h2, ul, li) { margin: 0; padding: 0; }
+
+.sw-st p.sw-st__label {
+  font-family: var(--sw-font);
+  font-size: clamp(12px, 1.11vw, 16px);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: var(--sw-blue);
+}
+.sw-st h2.sw-st__title {
+  max-width: 1100px;
+  font-family: var(--sw-font);
+  font-size: clamp(32px, 4.44vw, 64px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-st p.sw-st__intro {
+  max-width: 900px;
+  font-size: clamp(16px, 1.53vw, 22px);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Rows */
+.sw-st__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5.28vw, 76px);
+  width: 100%;
+}
+.sw-st__group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.06vw, 44px);
+}
+.sw-st__rule {
+  height: 1px;
+  background: #dce5e7;
+}
+.sw-st__row {
+  display: grid;
+  grid-template-columns: 360fr 760fr;
+  column-gap: clamp(40px, 8.33vw, 120px);
+  align-items: start;
+}
+.sw-st p.sw-st__term {
+  font-family: var(--sw-font);
+  font-size: clamp(17px, 1.53vw, 22px);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Right column (rich text) */
+.sw-st .sw-st__value { font-family: var(--sw-font); }
+.sw-st .sw-st__value p {
+  margin: 0;
+  font-size: clamp(17px, 1.53vw, 22px);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-st .sw-st__value h4 {
+  margin: 0;
+  font-family: var(--sw-font);
+  font-size: clamp(14px, 1.11vw, 16px);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-st .sw-st__value ul {
+  margin: clamp(10px, 1.25vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.sw-st .sw-st__value li {
+  margin: 0;
+  padding: 0;
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 400;
+  line-height: 2;
+  color: var(--sw-text);
+}
+.sw-st .sw-st__value li a,
+.sw-st .sw-st__value li a:visited,
+.sw-st .sw-st__value li a:hover {
+  color: var(--sw-text);
+  text-decoration: underline;
+}
+.sw-st .sw-st__value p + p,
+.sw-st .sw-st__value ul + p { margin-top: clamp(30px, 3.61vw, 52px); }
+
+/* Tablet / mobile */
+@media (max-width: 960px) {
+  .sw-st__row { grid-template-columns: 1fr; row-gap: 8px; }
+}
+
+/* =============================================
+   STRUCTURE ANIMATIONS
+   ============================================= */
+
+/* Rule: expand on reveal */
+.sw-st__rule {
+  height: 1px;
+  background: #dce5e7;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sw-st__group.sw-revealed .sw-st__rule {
+  transform: scaleX(1);
+}
+
+/* Link hover in value col */
+.sw-st .sw-st__value li a {
+  transition: opacity 0.2s ease;
+}
+.sw-st .sw-st__value li a:hover {
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-st__rule { transform: none; transition: none; }
+  .sw-st .sw-st__value li a { transition: none; }
+}
+/* ============================================= */

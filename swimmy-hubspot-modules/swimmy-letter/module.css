@@ -1,0 +1,106 @@
+.sw-lt {
+  --sw-font: 'Gothic A1', 'Noto Sans JP', sans-serif;
+  --sw-text: #24313b;
+
+  box-sizing: border-box;
+  padding: clamp(80px, 12.5vw, 180px) clamp(20px, 6.94vw, 100px);
+  background: #f8f9f7;
+  font-family: var(--sw-font);
+  color: var(--sw-text);
+}
+.sw-lt__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.sw-lt :is(p, h2) { margin: 0; padding: 0; }
+
+.sw-lt__layout {
+  display: grid;
+  grid-template-columns: 320fr 800fr;
+  column-gap: clamp(40px, 8.33vw, 120px);
+  align-items: start;
+}
+.sw-lt h2.sw-lt__title {
+  font-family: var(--sw-font);
+  font-size: clamp(24px, 2.64vw, 38px);
+  font-weight: 700;
+  line-height: 1.75;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+.sw-lt__right {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 2.5vw, 36px);
+  min-width: 0;
+}
+
+/* Letter */
+.sw-lt .sw-lt__letter {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 2.5vw, 36px);
+  font-family: var(--sw-font);
+}
+.sw-lt .sw-lt__letter p {
+  margin: 0;
+  font-size: clamp(14px, 1.25vw, 18px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-lt .sw-lt__letter h4 {
+  margin: 0;
+  font-family: var(--sw-font);
+  font-size: clamp(15px, 1.39vw, 20px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+.sw-lt .sw-lt__letter h3 {
+  margin: 0;
+  font-family: var(--sw-font);
+  font-size: clamp(17px, 1.53vw, 22px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Hairline + profile */
+.sw-lt__rule {
+  height: 1px;
+  background: #dce5e7;
+}
+.sw-lt .sw-lt__profile {
+  font-family: var(--sw-font);
+}
+.sw-lt .sw-lt__profile p {
+  margin: 0;
+  font-size: clamp(15px, 1.39vw, 20px);
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0;
+  color: var(--sw-text);
+}
+
+/* Link */
+.sw-lt .sw-lt__link,
+.sw-lt a.sw-lt__link:visited,
+.sw-lt a.sw-lt__link:hover {
+  display: inline-block;
+  font-family: var(--sw-font);
+  font-size: clamp(16px, 1.53vw, 22px);
+  font-weight: 600;
+  line-height: 2;
+  color: var(--sw-text);
+  text-decoration: none;
+}
+
+/* Tablet / mobile */
+@media (max-width: 960px) {
+  .sw-lt__layout { grid-template-columns: 1fr; row-gap: 28px; }
+}

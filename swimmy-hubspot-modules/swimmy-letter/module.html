@@ -1,0 +1,30 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-lt">
+  <div class="sw-lt__inner">
+    <div class="sw-lt__layout">
+
+      <h2 class="sw-lt__title">{{ br_lines(module.heading) }}</h2>
+
+      <div class="sw-lt__right">
+        <div class="sw-lt__letter">{{ module.letter }}</div>
+
+        {% if module.profile %}
+        <div class="sw-lt__rule"></div>
+        <div class="sw-lt__profile">{{ module.profile }}</div>
+        {% endif %}
+
+        {% if module.link_text %}
+          {% set href = module.link.url.href %}
+          {% if href %}
+            <a class="sw-lt__link" href="{{ href }}">{{ module.link_text }}</a>
+          {% else %}
+            <span class="sw-lt__link">{{ module.link_text }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

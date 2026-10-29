@@ -1,0 +1,29 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-ir sw-ir--{{ module.bg_color or 'white' }}{% if module.row_gap == 'wide' %} sw-ir--wide{% endif %}">
+  <div class="sw-ir__inner">
+
+    <p class="sw-ir__label sw-reveal">{{ module.top_label }}</p>
+
+    {% if module.heading_size == 'medium' %}
+      <h2 class="sw-ir__title sw-ir__title--md sw-reveal sw-reveal--delay-1">{{ br_lines(module.heading) }}</h2>
+    {% else %}
+      <h1 class="sw-ir__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.heading) }}</h1>
+      <div class="sw-ir__spacer" aria-hidden="true"></div>
+    {% endif %}
+
+    <div class="sw-ir__list">
+      {% for row in module.rows %}
+        {% if row.row_term or row.row_value %}
+        <div class="sw-ir__rule"></div>
+        <div class="sw-ir__row sw-reveal sw-reveal--delay-{{ loop.index }}">
+          <p class="sw-ir__term">{{ row.row_term }}</p>
+          <div class="sw-ir__value">{{ row.row_value }}</div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>

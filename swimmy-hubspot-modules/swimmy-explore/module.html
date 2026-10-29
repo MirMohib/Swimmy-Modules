@@ -1,0 +1,33 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-explore">
+  <div class="sw-explore__inner">
+
+    <div class="sw-explore__top sw-reveal">
+      <p class="sw-explore__label">{{ module.top_label }}</p>
+    </div>
+
+    <div class="sw-explore__head">
+      <h2 class="sw-explore__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.heading) }}</h2>
+      <p class="sw-explore__intro sw-reveal sw-reveal--delay-2">{{ br_lines(module.intro) }}</p>
+    </div>
+
+    <ol class="sw-explore__list">
+      {% for row in module.rows %}
+      {% set href = row.row_link.url.href %}
+      <li class="sw-explore__row sw-reveal sw-reveal--delay-{{ loop.index }}">
+        <span class="sw-explore__num">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+        <h3 class="sw-explore__name">{{ row.row_title }}</h3>
+        <p class="sw-explore__text">{{ br_lines(row.row_text) }}</p>
+        {% if href %}
+          <a class="sw-explore__link" href="{{ href }}">{{ row.row_link_text }}</a>
+        {% else %}
+          <span class="sw-explore__link">{{ row.row_link_text }}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+
+  </div>
+</section>

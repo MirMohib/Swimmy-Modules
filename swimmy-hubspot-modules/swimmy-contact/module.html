@@ -1,0 +1,51 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-contact">
+  <div class="sw-contact__inner">
+
+    <div class="sw-contact__top">
+      <p class="sw-contact__label">{{ module.top_label }}</p>
+      <p class="sw-contact__label">{{ module.top_text }}</p>
+    </div>
+
+    <div class="sw-contact__layout">
+
+      <div class="sw-contact__left">
+        <h2 class="sw-contact__title">{{ module.big_word }}</h2>
+        {% set arrow_href = module.button_link.url.href %}
+        {% if arrow_href %}
+          <a class="sw-contact__arrow" href="{{ arrow_href }}" aria-label="{{ module.button_text }}">↗</a>
+        {% else %}
+          <span class="sw-contact__arrow" aria-hidden="true">↗</span>
+        {% endif %}
+      </div>
+
+      <div class="sw-contact__right">
+        <p class="sw-contact__heading">{{ br_lines(module.heading) }}</p>
+        <p class="sw-contact__description">{{ br_lines(module.description) }}</p>
+
+        <div class="sw-contact__actions">
+          {% if module.button_text %}
+            {% set btn = module.button_link.url.href %}
+            {% if btn %}
+              <a class="sw-contact__btn" href="{{ btn }}">{{ module.button_text }}</a>
+            {% else %}
+              <span class="sw-contact__btn">{{ module.button_text }}</span>
+            {% endif %}
+          {% endif %}
+
+          {% if module.link_text %}
+            {% set lnk = module.link_link.url.href %}
+            {% if lnk %}
+              <a class="sw-contact__textlink" href="{{ lnk }}">{{ module.link_text }}</a>
+            {% else %}
+              <span class="sw-contact__textlink">{{ module.link_text }}</span>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

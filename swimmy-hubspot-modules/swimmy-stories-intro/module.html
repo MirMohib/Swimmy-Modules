@@ -1,0 +1,31 @@
+
+{% set posts = blog_recent_posts('default', 100) %}
+{% set ordered = posts if module.newest_first else posts|reverse %}
+
+<section class="sw-sintro">
+  <div class="sw-sintro__inner">
+
+    <p class="sw-sintro__label sw-reveal">{{ module.top_label }}</p>
+    <h1 class="sw-sintro__title sw-reveal sw-reveal--delay-1">{{ module.heading }}</h1>
+
+    {% if module.intro %}
+    <div class="sw-sintro__intro sw-reveal sw-reveal--delay-2">{{ module.intro }}</div>
+    {% endif %}
+
+    {% if ordered|length > 0 %}
+    <nav class="sw-sintro__index sw-reveal sw-reveal--delay-3" id="story-index" aria-label="Story index">
+      {% for post in ordered %}
+        {% set n = loop.index %}
+        {% set jp = [] %}
+        {% for t in post.tag_list %}
+          {% if (t.name|regex_replace('[ -~]', ''))|length > 0 %}{% do jp.append(t.name) %}{% endif %}
+        {% endfor %}
+        {% set short = jp|first %}
+        {% if not short %}{% set short = post.name|truncate(14) %}{% endif %}
+        <a class="sw-sintro__link" href="#story-{{ post.id }}">{% if n < 10 %}0{% endif %}{{ n }} {{ short }} ↓</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+  </div>
+</section>

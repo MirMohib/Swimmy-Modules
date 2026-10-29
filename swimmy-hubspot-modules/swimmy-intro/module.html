@@ -1,0 +1,54 @@
+
+{% macro br_lines(text) %}{% for line in text|split('//') %}{{ line|trim }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endmacro %}
+
+<section class="sw-intro">
+  <div class="sw-intro__inner">
+
+    <div class="sw-intro__top sw-reveal">
+      <p class="sw-intro__label">{{ module.top_label_left }}</p>
+      <p class="sw-intro__label sw-intro__label--muted">{{ module.top_label_right }}</p>
+    </div>
+
+    <div class="sw-intro__head">
+      <h2 class="sw-intro__title sw-reveal sw-reveal--delay-1">{{ br_lines(module.intro_heading) }}</h2>
+      <div class="sw-intro__prose sw-reveal sw-reveal--delay-2">
+        <p class="sw-intro__lead">{{ br_lines(module.intro_lead) }}</p>
+        <p class="sw-intro__note">{{ br_lines(module.intro_note) }}</p>
+      </div>
+    </div>
+
+    <div class="sw-intro__cols">
+
+      <article class="sw-intro__item sw-reveal sw-reveal--delay-1">
+        <p class="sw-intro__label">{{ module.svc_label }}</p>
+        <h3 class="sw-intro__h3">{{ br_lines(module.svc_heading) }}</h3>
+        <ul class="sw-intro__list">
+          {% for item in module.svc_items|split('//') %}
+          <li>{{ item|trim }}</li>
+          {% endfor %}
+        </ul>
+        <p class="sw-intro__text sw-intro__text--lg">{{ br_lines(module.svc_text) }}</p>
+        <a class="sw-link" href="{{ module.svc_link.url.href }}">{{ module.svc_link_text }}</a>
+      </article>
+
+      <article class="sw-intro__item sw-reveal sw-reveal--delay-2">
+        <p class="sw-intro__label">{{ module.spot_label }}</p>
+        {% if module.spot_image.src %}
+        <img class="sw-intro__img" src="{{ module.spot_image.src }}" alt="{{ module.spot_image.alt }}" loading="lazy">
+        {% endif %}
+        <h3 class="sw-intro__h3">{{ br_lines(module.spot_heading) }}</h3>
+        <p class="sw-intro__text">{{ br_lines(module.spot_text) }}</p>
+        <a class="sw-link" href="{{ module.spot_link.url.href }}">{{ module.spot_link_text }}</a>
+      </article>
+
+      <article class="sw-intro__item sw-intro__item--story sw-reveal sw-reveal--delay-3">
+        <p class="sw-intro__label">{{ module.story_label }}</p>
+        <h3 class="sw-intro__h3 sw-intro__h3--story">{{ br_lines(module.story_heading) }}</h3>
+        <span class="sw-intro__rule"></span>
+        <p class="sw-intro__text">{{ br_lines(module.story_text) }}</p>
+        <a class="sw-link" href="{{ module.story_link.url.href }}">{{ module.story_link_text }}</a>
+      </article>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+
+{% set posts = blog_recent_posts('default', 100) %}
+{% set ordered = posts if module.newest_first else posts|reverse %}
+
+{% for post in ordered %}
+  {% set n = loop.index %}
+
+  {# English tag only (no Japanese characters) #}
+  {% set cats = [] %}
+  {% for t in post.tag_list %}
+    {% if (t.name|regex_replace('[ -~]', ''))|length == 0 %}{% do cats.append(t) %}{% endif %}
+  {% endfor %}
+
+  <section class="sw-sp" id="story-{{ post.id }}">
+    <div class="sw-sp__inner">
+
+      <p class="sw-sp__label">{% if n < 10 %}0{% endif %}{{ n }}{% if cats %} / {{ cats[0].name }}{% endif %}</p>
+
+      {% if post.featured_image %}
+      <img class="sw-sp__img" src="{{ post.featured_image }}" alt="{{ post.featured_image_alt_text }}" loading="lazy">
+      {% endif %}
+
+      <h2 class="sw-sp__title">{{ post.name }}</h2>
+
+      <div class="sw-sp__layout">
+        <div class="sw-sp__context">
+          <p class="sw-sp__kicker">{{ module.kicker }}</p>
+          <p class="sw-sp__num">{% if n < 10 %}0{% endif %}{{ n }}</p>
+        </div>
+
+        <div class="sw-sp__story">
+          <div class="sw-sp__body">{{ post.post_body }}</div>
+          <a class="sw-sp__back" href="#story-index">{{ module.back_text }}</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+{% endfor %}
