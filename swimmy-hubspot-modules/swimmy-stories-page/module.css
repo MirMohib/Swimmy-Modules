@@ -41,6 +41,8 @@
   line-height: 1.75;
   letter-spacing: 0;
   color: var(--sw-text);
+  line-break: strict;
+  overflow-wrap: anywhere;
 }
 
 /* Reading layout */

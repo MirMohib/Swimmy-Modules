@@ -1,4 +1,3 @@
-
 {% set posts = blog_recent_posts('default', 100) %}
 {% set ordered = posts if module.newest_first else posts|reverse %}
 
@@ -17,10 +16,11 @@
       <p class="sw-sp__label">{% if n < 10 %}0{% endif %}{{ n }}{% if cats %} / {{ cats[0].name }}{% endif %}</p>
 
       {% if post.featured_image %}
-      <img class="sw-sp__img" src="{{ post.featured_image }}" alt="{{ post.featured_image_alt_text }}" loading="lazy">
+      <img class="sw-sp__img" src="{{ post.featured_image }}" alt="{{ post.featured_image_alt_text }}" loading="lazy" decoding="async">
       {% endif %}
 
-      <h2 class="sw-sp__title">{{ post.name }}</h2>
+      {# "//" in the post name = line break in the design #}
+      <h2 class="sw-sp__title">{{ post.name|escape|replace(' // ', '//')|replace('//', '<br>') }}</h2>
 
       <div class="sw-sp__layout">
         <div class="sw-sp__context">
