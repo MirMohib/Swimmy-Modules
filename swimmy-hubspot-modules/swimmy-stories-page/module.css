@@ -123,6 +123,7 @@
   font-weight: 700;
   line-height: 2;
   color: var(--sw-text);
+  background: transparent;
 }
 .sw-sp .sw-sp__body blockquote p {
   margin: 0;
