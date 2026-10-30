@@ -47,7 +47,7 @@
 
     <div class="sw-feat__head">
       {% if tag %}<p class="sw-feat__label sw-feat__label--center">{{ tag.name }}</p>{% endif %}
-      <h2 class="sw-feat__title">{{ featured.name }}</h2>
+      <h2 class="sw-feat__title">{{ featured.name|replace(' // ', ' ')|replace('//', ' ')|trim }}</h2>
       {% if summary %}<p class="sw-feat__sub">{{ summary }}</p>{% endif %}
     </div>
 

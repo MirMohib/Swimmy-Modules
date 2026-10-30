@@ -32,7 +32,7 @@
         <article class="sw-story{% if not post.featured_image %} sw-story--noimg{% endif %}">
           <div class="sw-story__copy">
             <p class="sw-label">{% if n < 10 %}0{% endif %}{{ n }}{% if tag %} — {{ tag.name }}{% endif %}</p>
-            <h3 class="sw-story__title">{{ post.name }}</h3>
+            <h3 class="sw-story__title">{{ post.name|replace(' // ', ' ')|replace('//', ' ')|trim }}</h3>
             <p class="sw-story__summary">{{ summary }}</p>
             <a class="sw-link" href="{{ module.stories_page_link.url.href }}#story-{{ post.id }}">{{ module.read_text }}</a>
           </div>
