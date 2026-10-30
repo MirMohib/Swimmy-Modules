@@ -43,7 +43,6 @@
 .sw-stories__head {
   display: grid;
   grid-template-columns: 604.8fr 515.2fr;
-  column-gap: clamp(40px, 8.33vw, 120px);
   align-items: start;
 }
 .sw-stories h2.sw-stories__title {

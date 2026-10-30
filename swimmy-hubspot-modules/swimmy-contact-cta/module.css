@@ -76,33 +76,23 @@
 }
 
 /* =============================================
-   CONTACT CTA ANIMATIONS
+   CONTACT CT ANIMATIONS
    ============================================= */
 
-/* Arrow: spin + bounce on hover */
-@keyframes sw-arrow-spin {
-  0%   { transform: rotate(0deg) scale(1); }
-  50%  { transform: rotate(15deg) scale(1.2); }
-  100% { transform: rotate(0deg) scale(1); }
-}
 .sw-cta a.sw-cta__arrow {
   display: inline-block;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .sw-cta a.sw-cta__arrow:hover {
-  animation: sw-arrow-spin 0.4s ease;
   opacity: 0.85;
 }
 
 /* Button hover */
 .sw-cta a.sw-cta__btn {
   transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-  border: 1px solid rgba(255,255,255,0.5);
 }
 .sw-cta a.sw-cta__btn:hover {
-  background: #1a2e40;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -101,7 +101,6 @@
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 1.67vw, 24px);
-  max-width: 624px;
   font-family: var(--sw-font);
   font-size: clamp(15px, 1.39vw, 20px);
   font-weight: var(--sw-weight);

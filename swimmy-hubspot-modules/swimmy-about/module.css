@@ -32,8 +32,7 @@
 /* Top row */
 .sw-about__top {
   display: grid;
-  grid-template-columns: 672fr 548fr;
-  gap: 20px;
+  grid-template-columns: 582.4fr 537.6fr;
   padding-top: 20px;
   border-top: 1px solid #dce5e7;
 }
@@ -42,7 +41,6 @@
 .sw-about__layout {
   display: grid;
   grid-template-columns: 582.4fr 537.6fr;
-  column-gap: clamp(40px, 8.33vw, 120px);
   align-items: start;
 }
 .sw-about__title-col {
